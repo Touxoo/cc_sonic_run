@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from sonic import Player
+from sonic import Personnage
 
 pygame.init()
 
@@ -23,10 +23,7 @@ imagex = 0
 imagey = 0
 direction = "left"
 
-
-
-
-player = Player()
+sonic = Personnage()
 
 while True:
     screen.fill(white)
@@ -35,6 +32,17 @@ while True:
         if event.type == pygame.QUIT:
             quit()
 
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_d]:
+        sonic.goRight()
+    if keys[pygame.K_a]:
+        sonic.goLeft()
+    
+
+
+
     screen.blit(image, (imagex, imagey))
+    screen.blit(sonic.image, sonic.rect)
     pygame.display.update()
     fpsClock.tick(FPS)
